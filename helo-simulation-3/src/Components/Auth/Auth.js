@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
  import "./Auth.css"
- import {connect} from 'react-redux';
+ 
  import home from "../../assets/helo_logo.png"
 import axios from 'axios';
-// import image from './image'
+//import image from './image'
 class Auth extends Component {
   constructor(props) {
     super(props)
@@ -24,12 +24,14 @@ class Auth extends Component {
     })
   }
   handleLogin = () => {
+    console.log("Its Ok we can do it anyway");
     axios.post('/login', {
       username: this.state.username,
       password: this.state.password
     }).then(res => {
-      this.handleRedirect()
-    }).catch(err => { console.log('could not login') })
+    
+       this.handleRedirect()
+    }).catch(err => { console.log("I ERROR") })
 
   }
   handleRegister = async () => {
@@ -56,7 +58,7 @@ class Auth extends Component {
       <div className='Auth'>
         <div className='Modal'>
             {/* <img src={Image} className="helo_logo.png"></img> */}
-            <a href="/"><img src={home} className="helo_logo.png"/></a>
+            <a href="/"><img src={home} alt='home' className="helo_logo.png"/></a>
           <h1>Helo</h1>
           <div className='inputs'>
             <p>Username :  </p>

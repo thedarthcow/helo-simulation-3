@@ -1,8 +1,11 @@
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs') //bcrypt is npm package
 
 async function login(req, res) {
   const db = req.app.get('db')
   let foundUser = await db.get_user([req.body.username])
+  console.log("I'm in login")
+  console.log(req.body.username)
+  console.log(foundUser)
 
   const user = foundUser[0]
   if (user)

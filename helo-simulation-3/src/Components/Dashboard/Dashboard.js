@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './Dashboard.css';
 import { Link } from 'react-router-dom';
-import { GET_USER } from '../../ducks/reducer';
-import {connect} from 'react-redux';
+//import { GET_USER } from '../../ducks/reducer';
+//import {connect} from 'react-redux';
 import axios from 'axios';
 class Dashboard extends Component {
   constructor(props) {

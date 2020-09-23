@@ -12,7 +12,7 @@ const { login, register, logout, getFavorites, getPost } = require('./controller
 app.use(json())
 //database
 
-massive(CONNECTION_HOST)
+massive({connectionString: CONNECTION_HOST, ssl: {rejectUnauthorized: false}})
   .then(db => {
     app.set('db', db)
     console.log('database is connected')
@@ -20,7 +20,7 @@ massive(CONNECTION_HOST)
   .catch(err => {
     console.log(err)
   })
-//session
+// session
  app.use(
    session({
    secret: SESSION_SECRET,
@@ -31,13 +31,17 @@ massive(CONNECTION_HOST)
     }
   })
  )
-//endpoints
+// endpoints
 app.post('/login', (req, res, next) => {
   if (!req.session.user) {
-     controller.logout(req,res);
-    req.session.Username = {};
+    console.log("I got here")
+    // controller.logout(req,res);
+    //THISIS WHERE BROKEN
+    //OBJECT REQ.SESSION == NULL
+    console.log(req.session)
+    req.session.username = {};
+    
     controller.login(req,res);
-    console.log(value);
     console.log(req.session.user);
      next()
   } else {

@@ -13,14 +13,13 @@ const Nav = props => {
   return (
     <div className='Nav'>
       <div className="nav_profile_container">
-         <img className="nav_profile_pic" src={profile}> 
-        </img> 
+         <img className="nav_profile_pic" src={profile} alt="user"/>  
         <p>1</p>
       </div>
       <div className="nav_links">
-        <Link to='/dashboard'><img src={home} /></Link> 
-         <Link to='/new'><img src={newPost} /></Link> 
-        <img src={power} style={{ cursor: "pointer" }} onClick={() => { 
+        <Link to='/dashboard'><img alt="dash" src={home} /></Link> 
+         <Link to='/new'><img alt="new" src={newPost} /></Link> 
+        <img src={power} style={{ cursor: "pointer" }} alt="Shut Down" onClick={() => { 
           axios.get('/logout').then(props.history.push('/')).catch(err => console.log(err))
         }} />
       </div>
@@ -36,4 +35,4 @@ function mapStateToProps(state){
 
 
 
- export default withRouter(Nav)
+ export default withRouter(connect(mapStateToProps, {getUser})(Nav))
